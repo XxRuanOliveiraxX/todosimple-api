@@ -1,5 +1,6 @@
 package com.ruan.todosimple.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class UserService {
         Optional<User> user = this.userRepository.findById(id);
         return user.orElseThrow(()-> new RuntimeException(
             "Usuário não encontrado"));
+    }
+
+    public List<User> findAll(){
+    List<User> user = this.userRepository.findAll();
+    return user;
     }
 
     @Transactional
