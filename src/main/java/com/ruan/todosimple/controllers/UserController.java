@@ -1,6 +1,7 @@
 package com.ruan.todosimple.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,11 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id){
         User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj);
+    }
+    @GetMapping
+    public ResponseEntity<List<User>> findAll (){
+        List<User> obj = userService.findAll();
         return ResponseEntity.ok().body(obj);
     }
 
