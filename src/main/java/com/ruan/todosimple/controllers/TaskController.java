@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ruan.todosimple.models.Task;
 import com.ruan.todosimple.services.TaskService;
+import com.ruan.todosimple.services.UserService;
 
 import jakarta.validation.Valid;
 
@@ -29,14 +30,18 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/{id}")
     public ResponseEntity<Task> findById(@PathVariable Long id){
         Task obj = this.taskService.findById(id);
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok(obj);
     }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Task>> findAllByUserId(@PathVariable Long userId){
+        userService.findById(userId);
         List<Task> obj = this.taskService.FindAllByUserId(userId);
         return ResponseEntity.ok().body(obj);
     }
