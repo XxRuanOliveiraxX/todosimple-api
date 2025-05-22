@@ -11,7 +11,7 @@ function show(tasks){
             <th scope="col">Description</th>
             <th scope="col">Username</th>
             <th scope="col">User Id</th>
-        <thead>`;
+        </thead>`;
 
     for (let task of tasks) {
         tab += `
