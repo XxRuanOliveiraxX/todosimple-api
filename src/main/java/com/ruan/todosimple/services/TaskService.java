@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ruan.todosimple.models.Task;
 import com.ruan.todosimple.models.User;
 import com.ruan.todosimple.repositories.TaskRepository;
+import com.ruan.todosimple.services.exceptions.DataBindingViolationException;
 
 import jakarta.transaction.Transactional;
 
@@ -53,7 +54,7 @@ public class TaskService {
         try {
             this.taskRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RuntimeException(
+            throw new DataBindingViolationException(
             "Não é possivel excluir o usuário, pois há entidades relacionadas");
         }
     }
