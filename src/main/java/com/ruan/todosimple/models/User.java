@@ -19,8 +19,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,12 +33,6 @@ import lombok.NoArgsConstructor;
 
 public class User {
 
-    public interface CreateUser {
-    }
-
-    public interface UpdateUser {
-    }
-
     public static final String TABLE_NAME = "user";
 
     @Id
@@ -47,16 +40,14 @@ public class User {
     private Long id;
 
     @Column(name = "username", unique = true, nullable = false)
-    @NotNull(groups = CreateUser.class)
-    @NotEmpty(groups = CreateUser.class)
-    @Size(groups = CreateUser.class, min = 2, max = 100)
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String username;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", nullable = false)
-    @NotNull(groups = { CreateUser.class, UpdateUser.class })
-    @NotEmpty(groups = { CreateUser.class, UpdateUser.class })
-    @Size(groups = { CreateUser.class, UpdateUser.class }, min = 8, max = 60)
+    @NotBlank
+    @Size(min = 8, max = 60)
     private String password;
 
     @OneToMany(mappedBy = "user")

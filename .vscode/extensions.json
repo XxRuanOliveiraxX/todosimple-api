@@ -1,8 +1,8 @@
 {
     "recommendations": [
-        "vscjava.vscode-java-pack", 
-        "pivotal.vscode-boot-dev-pack",
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
         "sohibe.java-generate-setters-getters",
-        "ritwickdey.LiveServer"
+        "ritwickdey.liveserver"
     ]
 }
