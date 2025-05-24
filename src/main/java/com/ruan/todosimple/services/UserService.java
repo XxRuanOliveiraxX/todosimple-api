@@ -1,6 +1,7 @@
 package com.ruan.todosimple.services;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,7 +31,7 @@ public class UserService {
 
     public User findById(Long id) {
         UserSpringSecurity userSpringSecurity = authenticated();
-        if (userSpringSecurity == null
+        if (!Objects.nonNull(userSpringSecurity)
                 || !userSpringSecurity.hasRole(ProfileEnum.ADMIN) && !id.equals(userSpringSecurity.getId()))
             throw new AuthorizationException("Acesso negado!");
 
